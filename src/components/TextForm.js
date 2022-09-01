@@ -24,9 +24,7 @@ export default function TextForm(props) {
   };
 
   const handleCopyText = () => {
-    let text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
     props.showAlert("Copied to clipboard", "success");
   };
   const [text, setText] = useState("Enter text here");
@@ -85,12 +83,12 @@ export default function TextForm(props) {
       >
         <h1>Your Text Summary</h1>
         <p>
-          {text.split(" ").filter((word) => word !== "").length} words,{" "}
+          {text.split("/s+/").filter((word) => word !== "").length} words,{" "}
           {text.length} characters
         </p>
         <p>
-          {0.008 * text.split(" ").filter((word) => word !== "").length} Minutes
-          Reading Time
+          {0.008 * text.split("/s+/").filter((word) => word !== "").length}{" "}
+          Minutes Reading Time
         </p>
         <h2>Preview</h2>
         <p>{text.length > 0 ? text : "Nothing To Preview"}</p>
