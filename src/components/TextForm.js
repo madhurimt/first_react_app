@@ -43,23 +43,39 @@ export default function TextForm(props) {
             value={text}
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
               color: props.mode === "dark" ? "white" : "#042743",
             }}
             id="myBox"
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleUpClick}
+        >
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLowClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleLowClick}
+        >
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleClearText}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-my-1"
+          onClick={handleClearText}
+        >
           Clear Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleCopyText}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleCopyText}
+        >
           Copy Text
         </button>
       </div>
@@ -72,13 +88,12 @@ export default function TextForm(props) {
           {text.split(" ").filter((word) => word !== "").length} words,{" "}
           {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes Reading Time</p>
-        <h2>Preview</h2>
         <p>
-          {text.length > 0
-            ? text
-            : "Enter something in textbox above to preview it"}
+          {0.008 * text.split(" ").filter((word) => word !== "").length} Minutes
+          Reading Time
         </p>
+        <h2>Preview</h2>
+        <p>{text.length > 0 ? text : "Nothing To Preview"}</p>
       </div>
     </>
   );
